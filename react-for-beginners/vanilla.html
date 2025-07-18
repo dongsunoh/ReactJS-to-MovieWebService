@@ -5,18 +5,18 @@
     <title>Title</title>
 </head>
 <body>
-    <span>Total Clicks : 0</span>
+    <h3>Total Clicks : 0</h3>
     <button id="btn">Click me</button>
 </body>
 <script>
     let counter = 0;
     const button = document.getElementById('btn');
-    const span = document.querySelector('span');
+    const h3 = document.querySelector('h3');
     function handleClick() {
         counter++;
-        span.innerText = `Total Clicks : ${counter}`;
+        h3.innerText = `Total Clicks : ${counter}`;
     }
-    button.addEventListener('click', handleClick);
+    button.addEventListener('', handleClick);
 
 </script>
 </html>
