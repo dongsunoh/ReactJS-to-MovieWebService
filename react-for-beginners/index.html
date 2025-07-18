@@ -15,22 +15,20 @@
 <script type="text/babel">
     const root      = document.getElementById('root');
 
-    //첫글자는 반드시 대문자로 작성해야 함. 소문자면 html로 인식
-    function Title() {
+    function App() {
+        const [counter, setCounter] = React.useState(0);
+        const onClick = () => {
+            setCounter(counter+1);
+        }
         return (
-            <h3 id="title" onMouseEnter={() => console.log('MouseEnter')}>Hello I'm a Title</h3>
+            <div>
+                <h3>Total Clicks : {counter}</h3>
+                <button onClick={onClick}>Click me</button>
+            </div>
         );
     }
 
-    const Button    = () => (<button id="btn" onClick={()=>console.log('Click')}>Click me</button>);
-    const Container    = () => (
-        <div>
-            <Title/>
-            <Button/>
-        </div>
-    );
-
-    ReactDOM.render(<Container/>, root);
+    ReactDOM.render(<App/>, root);
 
 </script>
 </html>
