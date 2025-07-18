@@ -10,17 +10,37 @@
 <!-- ReactJS와 ReactDOM을 활용한 샘플 코드 -->
 <script src="https://www.unpkg.com/react@18.3.1/umd/react.production.min.js"></script>
 <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
-<script>
+<!-- babel 사용하여 JSX로 사용한 문법을 브라우저가 읽을 수 있는 코드로 변경 -->
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
     const root      = document.getElementById('root');
+
+    /*const Title     = () => (<h3 id="title" onMouseEnter={() => console.log('MouseEnter')}>Hello I'm a Title</h3>);*/
+    //첫글자는 반드시 대문자로 작성해야 함. 소문자면 html로 인식
+    function Title() {
+        return (
+            <h3 id="title" onMouseEnter={() => console.log('MouseEnter')}>Hello I'm a Title</h3>
+        );
+    }
+
+    const Button    = () => (<button id="btn" onClick={()=>console.log('Click')}>Click me</button>);
     /*const h3 = React.createElement('h3', {id : "sexy-span", style : {color: "red"} }, "Hello I'm a span");*/
-    const h3        = React.createElement('h3', {
+    /*const h3        = React.createElement('h3', {
         onMouseEnter: () => console.log('MouseEnter'),
-    }, "Hello I'm a span");
-    const btn       = React.createElement('button', {
+    }, "Hello I'm a span");*/
+    /*const btn       = React.createElement('button', {
         onClick: () => console.log('clicked'),
-    }, "Click me");
-    const container = React.createElement("div", null, [h3, btn]);
-    ReactDOM.render(container, root);
+    }, "Click me");*/
+    /*const container = React.createElement("div", null, [Title, Button]);*/
+    const Container    = () => (
+        <div>
+            <Title/>
+            <Button/>
+        </div>
+    );
+
+    ReactDOM.render(<Container/>, root);
+
 </script>
 </html>
 
