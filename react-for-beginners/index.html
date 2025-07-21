@@ -59,10 +59,48 @@
     }
 
     function KmToMiles() {
-        // TODO KmToMiles 기능 구현하기
+        // KmToMiles 기능 구현하기
+        const [amount, setAmount] = React.useState(0);
+        const [inverted, setInverted] = React.useState(false);
+
+        const onChage = (event) => {
+            setAmount(event.target.value);
+        };
+
+        const reset = () => {setAmount(0);};
+        const onInvert = () => {
+            reset();
+            setInverted(current => !current);
+        };
+
         return (
-            <h3>KM 2 M</h3>
-        )
+           <div>
+               <div>
+                   <label htmlFor="km">KM</label>
+                   <input
+                       id="km"
+                       value={inverted ? amount * 1.60934 : amount}
+                       placeholder="Km"
+                       onChange={onChage}
+                       type="number"
+                       disabled={inverted}
+                   />
+               </div>
+               <div>
+                   <label htmlFor="miles">Miles</label>
+                   <input
+                       id="miles"
+                       value={inverted ? amount : amount * 0.621371}
+                       placeholder="Miles"
+                       onChange={onChage}
+                       type="number"
+                       disabled={!inverted}
+                   />
+               </div>
+               <button onClick={reset}>Reset</button>
+               <button onClick={onInvert}>{inverted ? "Turn back" : "Invert"}</button>
+           </div>
+        );
     }
 
     function App() {
