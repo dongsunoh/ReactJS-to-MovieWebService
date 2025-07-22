@@ -8,14 +8,16 @@
     <div id="root"></div>
 </body>
 <!-- ReactJS와 ReactDOM을 활용한 샘플 코드 -->
-<script src="https://www.unpkg.com/react@18.3.1/umd/react.production.min.js"></script>
-<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
+<script src="https://www.unpkg.com/react@17.0.2/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.development.js"></script>
+<!-- props 타입 체크해주는 라이브러리 설치 -->
+<script src="https://unpkg.com/prop-types@15.8.1/prop-types.js"></script>
 <!-- babel 사용하여 JSX로 사용한 문법을 브라우저가 읽을 수 있는 코드로 변경 -->
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 <script type="text/babel">
     const root      = document.getElementById('root');
 
-    function Btn({text, changeValue}) {
+    function Btn({text, changeValue, fontSize}) {
 
         console.log(text + "was re-render");
 
@@ -27,6 +29,7 @@
                     padding:'10px 20px',
                     border:0,
                     borderRadius:10,
+                    fontSize:fontSize,
                 }}
                 onClick={changeValue}
             >
@@ -37,6 +40,12 @@
 
     const MemorizedBtn = React.memo(Btn);
 
+    // Btn props 타입 설정
+    Btn.propTypes = {
+        text : PropTypes.string,
+        fontSize : PropTypes.number,
+    };
+
     function App() {
         const [value, setValue] = React.useState("Save Changes");
         const chageValue = () => {
@@ -44,7 +53,7 @@
         };
         return (
             <div>
-                <MemorizedBtn text={value} changeValue={chageValue}/>
+                <MemorizedBtn text={value} changeValue={chageValue} fontSize={16}/>
                 <MemorizedBtn text="Continue"/>
             </div>
         );
