@@ -1,30 +1,34 @@
-import {useState, useEffect} from "react";
-
-function Hello() {
-
-    useEffect(() => {
-       console.log("hi :)");
-        // 아래가 cleanup function. 컴포넌트가 destroy 될 때 실행 됨.
-       return () => {console.log("bye :(")};
-    }, []);
-
-    return (
-        <h1>Hello</h1>
-    );
-}
+import {useState} from "react";
 
 function App() {
 
-    const [showing, setShowing] = useState(false);
+    const [todo, setTodo] = useState("");
+    const [toDos, setToDos] = useState([]);
 
-    const onClick = () => {
-        setShowing(prevShowing => !prevShowing);
+    const onChange = (event) => {
+        setTodo(event.target.value);
+    }
+    const onSubmit = (event) => {
+        event.preventDefault(); // 웹 브라우저의 기본동작을 막는 함수
+        if(todo === "") {
+            return;
+        }
+        setToDos((currentArray) => [todo, ...currentArray]);
+        setTodo("");
     };
-
+    console.log(toDos);
     return (
           <div>
-              {showing ? <Hello /> : null}
-              <button onClick={onClick}>{showing ? "Hide" : "Show"}</button>
+              <h1>My To Dos ({toDos.length})</h1>
+              <form onSubmit={onSubmit}>
+                  <input
+                      value={todo}
+                      type="text"
+                      placeholder="write your to do..."
+                      onChange={onChange}
+                  />
+                  <button>Add To Do</button>
+              </form>
           </div>
       );
 }
