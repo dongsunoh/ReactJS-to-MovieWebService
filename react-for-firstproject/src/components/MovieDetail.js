@@ -5,7 +5,7 @@ function MovieDetail({coverImg, title, rating, year, runtime, genres}) {
     return (
         <>
             <div>
-                <Link to="/">Back to Movie List</Link>
+                <Link to={`${process.env.PUBLIC_URL}/`}>Back to Movie List</Link>
             </div>
             <hr/>
             <img src={coverImg} alt={title} />

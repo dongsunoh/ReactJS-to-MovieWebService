@@ -10,8 +10,8 @@ function App() {
     return (
         <Router>
             <Routes>
-                <Route path="/" Component={Home} />
-                <Route path="/movie/:id" Component={Detail} />
+                <Route path={`${process.env.PUBLIC_URL}/`}  Component={Home} />
+                <Route path={`${process.env.PUBLIC_URL}/movie/:id`} Component={Detail} />
             </Routes>
         </Router>
     );
