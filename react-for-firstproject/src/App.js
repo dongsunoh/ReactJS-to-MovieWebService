@@ -11,7 +11,7 @@ function App() {
         <Router>
             <Routes>
                 <Route path="/" Component={Home} />
-                <Route path="/movie/" Component={Detail} />
+                <Route path="/movie/:id" Component={Detail} />
             </Routes>
         </Router>
     );
