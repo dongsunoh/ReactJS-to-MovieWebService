@@ -8,10 +8,10 @@ import Detail from "./routes/Detail";
 
 function App() {
     return (
-        <Router>
+        <Router basename={process.env.PUBLIC_URL}>
             <Routes>
-                <Route path={`${process.env.PUBLIC_URL}/`}  Component={Home} />
-                <Route path={`${process.env.PUBLIC_URL}/movie/:id`} Component={Detail} />
+                <Route path="/"  Component={Home} />
+                <Route path="/movie/:id" Component={Detail} />
             </Routes>
         </Router>
     );
